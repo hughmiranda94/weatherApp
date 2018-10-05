@@ -1,7 +1,7 @@
 # Weather Channel
 Main Weather Dashboard
-![alt text](https://raw.githubusercontent.com/hugomiranda94/weatherApp/blob/master/ss/dashboard.png)
+![Main Weather Dashboard](https://raw.githubusercontent.com/hughmiranda94/weatherApp/master/ss/dashboard.png)
 City-specific weather details
-![alt text](https://raw.githubusercontent.com/hugomiranda94/weatherApp/blob/master/ss/city.png)
+![City-specific weather details](https://raw.githubusercontent.com/hughmiranda94/weatherApp/master/ss/city.png)
 Later weather for the city during the week
-![alt text](https://raw.githubusercontent.com/hugomiranda94/weatherApp/blob/master/ss/later.png)
+![Later weather for the city during the week](https://raw.githubusercontent.com/hugomiranda94/weatherApp/master/ss/later.png)
