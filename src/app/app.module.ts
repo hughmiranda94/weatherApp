@@ -10,13 +10,24 @@ import { NavComponent } from './nav/nav.component';
 
 
 import { FormsModule } from '@angular/forms';
+import { CityWeatherComponent } from './city-weather/city-weather.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes = [
     {
-      path:'', component: HomeComponent
+        path: '', redirectTo: '/Dashboard', pathMatch: 'full'
     },
     {
-      path:'home', component: HomeComponent
+        path: 'Dashboard', component: HomeComponent
+    },
+    {
+        path: 'NotFound', component: NotFoundComponent
+    },
+    {
+        path: ':city', component: CityWeatherComponent, pathMatch: 'full'
+    },
+    {
+        path: '**', redirectTo: '/NotFound', pathMatch: 'full'
     }
 ];
 
@@ -24,7 +35,9 @@ const routes = [
     declarations: [
         AppComponent,
         HomeComponent,
-        NavComponent
+        NavComponent,
+        CityWeatherComponent,
+        NotFoundComponent
     ],
     imports: [
         BrowserModule,

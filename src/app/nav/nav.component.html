@@ -1,8 +1,12 @@
-<div class="nav-container">
-  <h1>WeatherChannel</h1>
-  <div class="search">
-    <label>How's the weather like in...&nbsp;</label>
-    <input type="search" placeholder="City..." class="search-input"  name="searchInput" #searchInput>
-    <button class="search-btn" (click)="getSearchInput()" name="searchBtn" #searchBtn>Search</button>
+<nav class="nav-container">
+  <div class="logo" [routerLink]="['/Dashboard']">
+    <img src="../../assets/weather-icon.png" class="weather-icon">
+    <h1>WeatherChannel</h1>
   </div>
-</div>
+  <form class="search-form" 
+  (ngSubmit)="locationService.setLocation(searchInput.value)">
+    <label class="form-label">How's the weather like in...&nbsp;</label>
+    <input type="search" placeholder="City..." class="search-input" name="searchInput" #searchInput>
+    <button class="search-btn" type="submit" name="searchBtn" #searchBtn>Search</button>
+  </form>
+</nav>

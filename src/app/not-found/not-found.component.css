@@ -1,0 +1,11 @@
+div{
+  height: 80%;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+}
+.not-found-msg{
+  text-align: center;
+  font-size: 3rem;
+}

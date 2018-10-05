@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { map } from 'rxjs/operators';
-// import 'rxjs/add/operator/map';
-// import { Map } from 'rxjs/add/operator';
 
 @Injectable({
   providedIn: 'root'

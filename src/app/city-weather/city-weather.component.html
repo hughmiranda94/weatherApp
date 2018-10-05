@@ -1,0 +1,35 @@
+<div class="loading" *ngIf="result===undefined">
+  <div id="load1" class="loadBall"></div>
+  <div id="load2" class="loadBall"></div>
+  <div id="load3" class="loadBall"></div>
+</div>
+<div class="weather-info" *ngIf="result!=undefined">
+  <h2 class="city-name">
+    {{result.city.name}},{{result.city.country}}
+  </h2>
+  <div class="weather-now">
+    <p class="now-date">{{getWeatherDate(result.list[0].dt_txt)}}</p>
+    <p class="now-description">{{result.list[0].weather[0].description | titlecase}}</p>
+    <p class="now-temp">{{result.list[0].main.temp- 273.15|number:'1.0-0'}}°C</p>
+    <p class="now-minmax">Min:{{result.list[0].main.temp_min- 273.15|number:'1.0-0'}}°C |
+      Max:{{result.list[0].main.temp_max- 273.15|number:'1.0-0'}}°C</p>
+    <p>Humidity: {{result.list[0].main.humidity}}%</p>
+    <p>Wind Speed: {{result.list[0].wind.speed*3600/1000|number:'1.2-2'}} km/h</p>
+  </div>
+  <p class="later-title">
+    Later this week...
+  </p>
+  <div class="weather-later">
+    <div *ngFor="let data of laterList" class="weather-per-time">
+      <p class="later-date">{{getWeatherDate(data.dt_txt)}}</p>
+      <p class="later-description">{{data.weather[0].description | titlecase}}</p>
+      <p class="later-temp">{{data.main.temp- 273.15|number:'1.0-0'}}°C</p>
+      <p class="later-minmax">Min:{{data.main.temp_min- 273.15|number:'1.0-0'}}°C | Max:{{data.main.temp_max-
+        273.15|number:'1.0-0'}}°C</p>
+    </div>
+  </div>
+
+
+  <button (click)="viewMore()" class="view-more" id="viewMore">View More</button>
+
+</div>

@@ -1,42 +1,15 @@
-<div class="nav-container">
-  <div class="logo">
-    <img src="../../assets/weather-icon.png" class="weather-icon">
-    <h1>WeatherChannel</h1>
-  </div>
-  <form class="search-form" (ngSubmit)="onSubmit($event)">
-    <label class="form-label">How's the weather like in...&nbsp;</label>
-    <input type="search" placeholder="City..." class="search-input" name="searchInput" #searchInput>
-    <button class="search-btn" (click)="getSearchInput()" name="searchBtn" #searchBtn>Search</button>
-  </form>
-</div>
-<div class="weather-info">
-  <h2 class="city-name">
-    {{result.city.name}},{{result.city.country}}
-  </h2>
-  <div class="weather-now">
-    <p class="now-date">{{getWeatherDate(result.list[0].dt_txt)}}</p>
-    <p class="now-description">{{result.list[0].weather[0].description | titlecase}}</p>
-    <p class="now-temp">{{result.list[0].main.temp- 273.15|number:'1.0-0'}}°C</p>
-    <p class="now-minmax">Min:{{result.list[0].main.temp_min- 273.15|number:'1.0-0'}}°C |
-      Max:{{result.list[0].main.temp_max- 273.15|number:'1.0-0'}}°C</p>
-    <p>Humidity: {{result.list[0].main.humidity}}%</p>
-    <p>Wind Speed: {{result.list[0].wind.speed*3600/1000|number:'1.2-2'}} km/h</p>
-
-  </div>
-  <p class="later-title">
-    Later this week...
-  </p>
-  <div class="weather-later">
-    <div *ngFor="let data of laterList" class="weather-per-time">
-      <p class="later-date">{{getWeatherDate(data.dt_txt)}}</p>
-      <p class="later-description">{{data.weather[0].description | titlecase}}</p>
-      <p class="later-temp">{{data.main.temp- 273.15|number:'1.0-0'}}°C</p>
-      <p class="later-minmax">Min:{{data.main.temp_min- 273.15|number:'1.0-0'}}°C | Max:{{data.main.temp_max-
-        273.15|number:'1.0-0'}}°C</p>
+<div class="home-dashboard">
+  <!-- <p class="now-date">{{getWeatherDate(result.list[0].dt_txt)}}</p> -->
+  <div class="dashboard">
+    <div class="grid">
+      <div class="weather-tile" *ngFor="let result of results; let i = index" 
+      (click)="goToCityWeather(result.city.name+','+result.city.country)" id="item{{i}}">
+        <p class="city-name">{{result.city.name}},{{result.city.country}}</p>
+        <p class="now-description">{{result.list[0].weather[0].description | titlecase}}</p>
+        <p class="now-temp">{{result.list[0].main.temp- 273.15|number:'1.0-0'}}°C</p>
+        <p class="now-minmax">Min:{{result.list[0].main.temp_min- 273.15|number:'1.0-0'}}°C |
+          Max:{{result.list[0].main.temp_max- 273.15|number:'1.0-0'}}°C</p>
+      </div>
     </div>
   </div>
-
-
-  <button (click)="viewMore()" class="view-more" id="viewMore">View More</button>
-
 </div>

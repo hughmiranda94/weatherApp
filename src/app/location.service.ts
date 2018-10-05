@@ -1,26 +1,47 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { HomeComponent } from './home/home.component';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
-  locationObservable : Observable<any>;
+  locationName: string = 'Monterrey';
+  cities : string[] = [
+    'Monterrey, MX',
+    'Mexico City, MX',
+    'Guadalajara, MX',
+    'Houston, US',
+    'Los Angeles, US',
+    'New York, US',
+    'Miami, US',
+    'Seattle, US',
+    'Toronto, CA',
+    'Quebec, CA',
+  ]
+  
+  subject = new Subject();
+  observable = this.subject.asObservable();
+  constructor(private router : Router) {
 
-  constructor() { }
-
-  getLocation(observable){
-    this.locationObservable =  observable;
-    console.log(observable);
-    observable.subscribe({
-      next: x => console.log('got value ' + x),
-      error: err => console.error('something wrong occurred: ' + err),
-      complete: () => console.log('done'),
-    });
+    this.subject.next(this.locationName); 
+    
   }
 
-  getLocationObservable(){
-    return this.locationObservable;
+  setLocation(location: string) {
+    this.locationName = location;
+    this.subject.next(this.locationName);    
+    this.router.navigateByUrl(this.locationName);
   }
+
+  getLocation() {
+    return this.observable;
+  }
+
+  getCities() {
+    return this.cities;
+  }
+
 }
