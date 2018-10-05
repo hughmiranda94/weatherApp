@@ -1,4 +1,4 @@
-# Weather Channel
+# WeatherApp
 Main Weather Dashboard
 ![Main Weather Dashboard](https://raw.githubusercontent.com/hughmiranda94/weatherApp/master/ss/dashboard.png)
 City-specific weather details
