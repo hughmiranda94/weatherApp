@@ -12,6 +12,7 @@ import { NavComponent } from './nav/nav.component';
 import { FormsModule } from '@angular/forms';
 import { CityWeatherComponent } from './city-weather/city-weather.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { WeatherResolverService } from './weather-resolver.service';
 
 const routes = [
     {
@@ -24,7 +25,10 @@ const routes = [
         path: 'NotFound', component: NotFoundComponent
     },
     {
-        path: ':city', component: CityWeatherComponent, pathMatch: 'full'
+        path: ':city', component: CityWeatherComponent, pathMatch: 'full',
+        resolve: {
+            weather: WeatherResolverService
+        }
     },
     {
         path: '**', redirectTo: '/NotFound', pathMatch: 'full'

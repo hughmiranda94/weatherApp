@@ -27,34 +27,51 @@ export class CityWeatherComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.locationService.setLocation(this.route.snapshot.paramMap.get('city'));
-    this.getWeather();
-    this.locationService.getLocation().subscribe(
-      x => {
-        this.getWeather();
+    
+    this.result = undefined;
+    this.route.data.subscribe(
+      response => {
+        this.result = response.weather.json();
+        // this.result = response.json();
+        console.log(this.result);
+        this.laterList = this.result.list.filter((laterWeather, index) => {
+          return (index < this.totalLaterTiles + 1 && index != 0);
+        });
       },
       err => {
         this.router.navigateByUrl('/NotFound');
       }
     );
+    // WITHOUT RESOLVERS:
+    // this.locationService.setLocation(this.route.snapshot.paramMap.get('city'));
+    // this.getWeather();
+    // this.locationService.getLocation().subscribe(
+    //   x => {
+    //     this.getWeather();
+    //   },
+    //     this.router.navigateByUrl('/NotFound');
+    //   }
+    // );
   }
 
-  getWeather() {
-    this.result = undefined;
-    this.weatherService.getWeather(this.locationService.locationName)
-      .subscribe(
-        response => {
-          this.result = response.json();
-          console.log(this.result);
-          this.laterList = this.result.list.filter((laterWeather, index) => {
-            return (index < this.totalLaterTiles + 1 && index != 0);
-          });
-        },
-        err => {
-          this.router.navigateByUrl('/NotFound');
-        }
-      );
-  }
+  // getWeather() {
+  //   this.result = undefined;
+  //   this.weatherService.getWeather(this.locationService.locationName)
+  //     .subscribe(
+  //       response => {
+  //         this.result = response.json();
+  //         console.log(this.result);
+  //         this.laterList = this.result.list.filter((laterWeather, index) => {
+  //           return (index < this.totalLaterTiles + 1 && index != 0);
+  //         });
+  //       },
+  //       err => {
+  //         this.router.navigateByUrl('/NotFound');
+  //       }
+  //     );
+  // }
+
+
 
   viewMore() {
     this.totalLaterTiles += 5;
